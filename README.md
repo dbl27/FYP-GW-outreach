@@ -17,4 +17,5 @@ data_animated.ipynb creates animated plots of trajectories and GW strain data fo
 The accuracy of the time-varying QM calculations in fromACC2.py are verified with GWOSC data and trajectories from SXS simulation database. compare_GWOSC.ipynb plots trajectories from SXS data, calculates and plots strain with functions from fromACC2.py, and plots observed strain data from the GWOSC database for comparison. /GWOSC_data contains H1 and L1 strain data from merger event GW150914, with H1 and L1 representing data taken from the Hanford and Livingstone observatories respectively (https://gwosc.org/eventapi/html/GWTC-1-confident/GW150914/v3/). /SXS_data contains simulated trajectories for black hole merger BBH:0305 (https://data.black-holes.org/waveforms/catalog.html).
 
 -> CMU:
-    Unfinished- contains motion tracking data used for testing purposes from Carnegie Mellon University Graphics Lab Motion Capture Database. Includes cartwheel and Lindy Hop trajectories.
+
+Unfinished- contains motion tracking data used for testing purposes from Carnegie Mellon University Graphics Lab Motion Capture Database. Includes cartwheel and Lindy Hop trajectories.
