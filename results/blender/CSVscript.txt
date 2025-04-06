@@ -1,0 +1,70 @@
+from __future__ import print_function
+import bpy
+import os
+
+D = bpy.data
+
+# Options
+printFrameNums = True  # Include frame numbers in the CSV
+relativeCoords = False  # If True, marker coordinates will be relative (0 to 1), otherwise absolute (pixels)
+
+# Define clip details
+clip_name = "IMG_3105.mp4"  # Your specific movie clip
+clip_directory = r"C:\Users\Diego\Documents\Physics\3RD YEAR\FYP\coding\blender\data\clips"
+
+# Tracking objects to export
+tracking_objects = ["Red", "Blue"]
+
+# Open log file for debugging
+log_file_path = os.path.join(clip_directory, "export-markers.log")
+with open(log_file_path, 'w') as log_file:
+    print("Starting marker export...\n", file=log_file)
+
+    # Try to find the specific clip by name
+    clip = None
+    for c in D.movieclips:
+        if c.name == clip_name:
+            clip = c
+            break
+
+    if clip is None:
+        print(f"Error: Clip '{clip_name}' not found in Blender.", file=log_file)
+    else:
+        width, height = clip.size  # Clip dimensions
+        print(f"Clip '{clip.name}' found with dimensions {width}x{height}\n", file=log_file)
+
+        # Loop through objects in tracking
+        for ob in clip.tracking.objects:
+            if ob.name in tracking_objects:  # Process only "Red" and "Blue" objects
+                print(f"Processing object: {ob.name}\n", file=log_file)
+
+                for track in ob.tracks:
+                    print(f"Processing track: {track.name}\n", file=log_file)
+
+                    # Define output CSV file path
+                    csv_filename = f"{clip.name.split('.')[0]}_{ob.name}_{track.name}.csv"
+                    csv_filepath = os.path.join(clip_directory, csv_filename)
+
+                    with open(csv_filepath, 'w') as f:
+                        framenum = 0
+                        while framenum < clip.frame_duration:
+                            markerAtFrame = track.markers.find_frame(framenum)
+
+                            if markerAtFrame:
+                                coords = markerAtFrame.co.xy
+                                if relativeCoords:
+                                    if printFrameNums:
+                                        print(f"{framenum},{coords[0]},{coords[1]}", file=f)
+                                    else:
+                                        print(f"{coords[0]},{coords[1]}", file=f)
+                                else:
+                                    if printFrameNums:
+                                        print(f"{framenum},{coords[0] * width},{coords[1] * height}", file=f)
+                                    else:
+                                        print(f"{coords[0] * width},{coords[1] * height}", file=f)
+
+                            framenum += 1
+
+                    print(f"Exported tracking data to {csv_filepath}\n", file=log_file)
+
+print("Export completed.")
