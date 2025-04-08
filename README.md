@@ -12,6 +12,7 @@ Contains fromACC2.py file, which details the creation of the MassPoint data clas
 
 data_animated.ipynb creates animated plots of trajectories and GW strain data for a given .mp4 recording. The csv output files in /blender/data are created externally with blender, with help of CSVscript.txt in /blender.
 run.py functions as a cmd runnable script of data_animated.ipynb. Can be used with a command such as:
+"cd yourdirectory\FYP-GW-outreach\results"
  "python run.py --csv1 blender\data\yourdata1.csv --csv2 blender\data\yourdata2.csv --out gifs\run.gif"
 
 -> validating_results:
