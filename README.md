@@ -11,6 +11,8 @@ Contains fromACC2.py file, which details the creation of the MassPoint data clas
 -> results:
 
 data_animated.ipynb creates animated plots of trajectories and GW strain data for a given .mp4 recording. The csv output files in /blender/data are created externally with blender, with help of CSVscript.txt in /blender.
+run.py functions as a cmd runnable script of data_animated.ipynb. Can be used with a command such as:
+ "python run.py --csv1 blender\data\yourdata1.csv --csv2 blender\data\yourdata2.csv --out run.gif"
 
 -> validating_results:
 
@@ -19,3 +21,4 @@ The accuracy of the time-varying QM calculations in fromACC2.py are verified wit
 -> CMU:
 
 Unfinished- contains motion tracking data used for testing purposes from Carnegie Mellon University Graphics Lab Motion Capture Database. Includes cartwheel and Lindy Hop trajectories.
+
